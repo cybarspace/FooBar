@@ -31,7 +31,7 @@ class Position:
 
 
 class FooBar:
-    def __init__(self, data=None, iterable=True):
+    def __init__(self, data=None, iterable=False):
         """
         :param data: data to add to linked list (if it is an iterable it will loop through and add each
         piece of data unless you specify iterable = False, then it will just add the iterable to one node)
