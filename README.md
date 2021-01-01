@@ -1,3 +1,5 @@
+PS: This is a work in progress
+
 # FooBar data structure
 - based on Linked List
 - ordered
