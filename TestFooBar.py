@@ -1,4 +1,4 @@
-from LinkedList import FooBar
+from FooBar import FooBar
 import copy
 
 
@@ -75,11 +75,3 @@ ll[5] = 14
 print(ll)
 print(14 in ll)
 print(13 in ll)
-
-
-
-
-
-
-
-
