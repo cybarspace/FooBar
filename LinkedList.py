@@ -2,7 +2,7 @@ import copy
 from collections.abc import Iterable
 
 
-class Position:
+class Node:
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
@@ -14,19 +14,19 @@ class Position:
         return str(self.data)
 
     def __lt__(self, other):
-        assert isinstance(other, Position)
+        assert isinstance(other, Node)
         return self.data < other.data
 
     def __le__(self, other):
-        assert isinstance(other, Position)
+        assert isinstance(other, Node)
         return self.data <= other.data
 
     def __gt__(self, other):
-        assert isinstance(other, Position)
+        assert isinstance(other, Node)
         return self.data > other.data
 
     def __ge__(self, other):
-        assert isinstance(other, Position)
+        assert isinstance(other, Node)
         return self.data >= other.data
 
 
@@ -48,15 +48,15 @@ class FooBar:
                 self.add(data)
 
     def add(self, data, *args):
-        if isinstance(data, Position):
+        if isinstance(data, Node):
             data = data.data
         self.size += 1
-        self.head = Position(data, self.head)
+        self.head = Node(data, self.head)
         for arg in args:
             self.add(arg)
 
     def insert(self, data, index):
-        if isinstance(data, Position):
+        if isinstance(data, Node):
             data = data.data
         if index < 0:
             index = self.size + index
@@ -66,11 +66,11 @@ class FooBar:
         elif index > self.size or index < 0:
             raise IndexError("Invalid index given")
         elif index == self.size:
-            self.get(index - 1).next = Position(data)
+            self.get(index - 1).next = Node(data)
         else:
             current = self.get(index - 1)
             old = current.next
-            current.next = Position(data, old)
+            current.next = Node(data, old)
         self.size += 1
 
     def get(self, index):
@@ -89,7 +89,7 @@ class FooBar:
                 current = current.next
 
     def append(self, data, *args):
-        if isinstance(data, Position):
+        if isinstance(data, Node):
             data = data.data
         self.insert(data, self.size)
         for arg in args:
