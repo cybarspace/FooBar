@@ -30,7 +30,7 @@ class Node:
         return self.data >= other.data
 
 
-class LinkedList:
+class FooBar:
     def __init__(self, data=None, iterable=True):
         """
         :param data: data to add to linked list (if it is an iterable it will loop through and add each
@@ -99,7 +99,7 @@ class LinkedList:
         return self.__copy__()
 
     def __copy__(self):
-        ll = LinkedList()
+        ll = FooBar()
         ll.extend(self)
         return ll
 
@@ -107,7 +107,7 @@ class LinkedList:
         return self.__deepcopy__()
 
     def __deepcopy__(self, memodict={}):
-        ll = LinkedList()
+        ll = FooBar()
         for node in self:
             ll.append(copy.deepcopy(node.data))
         return ll
@@ -142,7 +142,7 @@ class LinkedList:
         return rv.data
 
     def extend(self, iterable):
-        if isinstance(iterable, LinkedList):
+        if isinstance(iterable, FooBar):
             if self.size > 0:
                 self.get(self.size - 1).next = iterable.head
             else:
@@ -153,7 +153,7 @@ class LinkedList:
                 self.append(item)
 
     def reverse(self):
-        ll = LinkedList()
+        ll = FooBar()
         while self.head:
             ll.add(self.pop(0))
         self.extend(ll)
@@ -168,7 +168,7 @@ class LinkedList:
         return True
 
     def dataEquals(self, other):
-        if self.size != len(other) or not isinstance(other, LinkedList):
+        if self.size != len(other) or not isinstance(other, FooBar):
             return False
         for n1, n2 in zip(self, other):
             if n1.data != n2.data:
@@ -179,7 +179,7 @@ class LinkedList:
         self.head, self.size = None, 0
 
     def __reversed__(self):
-        ll = LinkedList()
+        ll = FooBar()
         for node in self:
             ll.add(node.data)
         return ll
@@ -230,7 +230,7 @@ class LinkedList:
                 step = -step
             else:
                 rev = False
-            ll = LinkedList()
+            ll = FooBar()
             for i, x in enumerate(self):
                 if start <= i < stop and (i + start) % step == 0:
                     ll.append(x)
@@ -256,6 +256,6 @@ class LinkedList:
         return False
 
     def sort(self):
-        new = LinkedList(sorted(self))
+        new = FooBar(sorted(self))
         self.clear()
         self.extend(new)

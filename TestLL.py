@@ -1,8 +1,8 @@
-from LinkedList import LinkedList
+from LinkedList import FooBar
 import copy
 
 
-ll = LinkedList()
+ll = FooBar()
 # basic adding
 ll.add(7)
 ll.add(3)
@@ -11,7 +11,7 @@ ll.insert(9, 3)
 ll.append(6)
 print(ll)
 
-ll2 = LinkedList()
+ll2 = FooBar()
 ll2.add(12, 15)
 ll.extend(ll2)
 print(ll)
