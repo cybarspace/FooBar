@@ -5,6 +5,7 @@ class FooBar:
             self.addfoo(item)
 
     def __add__(self, other):
+        assert isinstance(other, FooBar)
         return self.addbar(other)
 
     def addfoo(self, item):
@@ -12,22 +13,23 @@ class FooBar:
         self.foo_dict.update({join_index: item})
 
     def addbar(self, other):
+        assert isinstance(other, FooBar)
         tempbar = self.foobar(self)
         for item in other:
             tempbar.addfoo(item)
         return tempbar
 
-    def __getitem__(self, key):
-        assert isinstance(key, int)
-        return self.foo_dict.get(key)
+    def __getitem__(self, index):
+        assert isinstance(index, int)
+        return self.foo_dict.get(index)
 
-    def __setitem__(self, key, value):
-        assert isinstance(key, int)
-        self.foo_dict.update({key: value})
+    def __setitem__(self, index, value):
+        assert isinstance(index, int)
+        self.foo_dict.update({index: value})
 
-    def __delitem__(self, key):
-        assert isinstance(key, int)
-        self.foo_dict.pop(key)
+    def __delitem__(self, index):
+        assert isinstance(index, int)
+        self.foo_dict.pop(index)
 
     def __iter__(self):
         return self.foo_dict.values()
@@ -48,3 +50,9 @@ class FooBar:
 
     def __list__(self):
         return self.foo_dict.values()
+
+    def __eq__(self, other):
+        assert isinstance(other, FooBar)
+        return (
+            len(set(self.foo_dict.values()) - set(other.foo_dict.values())) == 0
+        )
