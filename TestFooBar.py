@@ -50,7 +50,7 @@ print(ll)
 
 # iterable by for loop
 for node in ll:
-    e = ', ' if node.next != None else ''
+    e = ", " if node.next != None else ""
     print(node.__repr__(), end=e)
 print()
 

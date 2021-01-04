@@ -1,3 +1,4 @@
+# FooBar data type class
 class FooBar:
     def __init__(self, *args):
         self.foo_dict = {}
