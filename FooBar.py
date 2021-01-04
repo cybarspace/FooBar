@@ -191,7 +191,11 @@ class FooBar:
         if isinstance(item, int):
             return self.get(item)
         elif isinstance(item, slice):
-            start, stop, step = item.start or 0, item.stop or self.size, item.step or 1
+            start, stop, step = (
+                item.start or 0,
+                item.stop or self.size,
+                item.step or 1,
+            )
             assert all(type(i) == int for i in (start, stop, step))
             if start < 0:
                 start = self.size + start
@@ -211,7 +215,8 @@ class FooBar:
             return ll
         else:
             raise TypeError(
-                "Invalid index type given (accepted indexes: int, slice)")
+                "Invalid index type given (accepted indexes: int, slice)"
+            )
 
     def __setitem__(self, key, value):
         assert isinstance(key, int)

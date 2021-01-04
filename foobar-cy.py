@@ -5,14 +5,14 @@ class FooBar:
             self.addfoo(item)
 
     def __add__(self, other):
-        return addbar(other)
+        return self.addbar(other)
 
     def addfoo(self, item):
         join_index = len(self.foo_dict)
         self.foo_dict.update({join_index: item})
 
     def addbar(self, other):
-        tempbar = foobar(self)
+        tempbar = self.foobar(self)
         for item in other:
             tempbar.addfoo(item)
         return tempbar
@@ -30,7 +30,7 @@ class FooBar:
         self.foo_dict.pop(key)
 
     def __iter__(self):
-        return self
+        return self.foo_dict.values()
 
     def __contains__(self, item):
         if item in set(self.foo_dict.values()):
@@ -45,3 +45,6 @@ class FooBar:
 
     def __str__(self):
         return f"[{', '.join(str(item) for item in self.foo_dict)}]"
+
+    def __list__(self):
+        return self.foo_dict.values()
