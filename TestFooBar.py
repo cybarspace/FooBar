@@ -1,4 +1,4 @@
-from FooBar import FooBar
+from foobar import FooBar
 import copy
 
 
