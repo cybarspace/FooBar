@@ -7,7 +7,13 @@ class FooBar:
 
     def __add__(self, other):
         assert isinstance(other, FooBar)
-        return self.addbar(other)
+        sum_bar = FooBar(self)
+        for item in other:
+            sum_bar.addfoo(item)
+        return sum_bar
+
+    def append(self, item):
+        self.addfoo(item)
 
     def addfoo(self, item):
         join_index = len(self.foo_dict)
@@ -15,18 +21,71 @@ class FooBar:
 
     def addbar(self, other):
         assert isinstance(other, FooBar)
-        tempbar = self.foobar(self)
-        for item in other:
-            tempbar.addfoo(item)
-        return tempbar
+        self.__add__(other)
+
+    def insert(self, data, index):
+        if isinstance(data, Node):
+            data = data.data
+        if index < 0:
+            index = self.size + index
+        if index == 0:
+            self.add(data)
+            return
+        elif index > self.size or index < 0:
+            raise IndexError("Invalid index given")
+        elif index == self.size:
+            self.get(index - 1).next = Node(data)
+        else:
+            current = self.get(index - 1)
+            old = current.next
+            current.next = Node(data, old)
+        self.size += 1
+
+    def get(self, index):
+        if index < 0:
+            index = self.size + index
+        if index == 0:
+            return self.head
+        elif index > self.size - 1 or index < 0:
+            raise IndexError("Invalid index given")
+        else:
+            current, ind = self.head, 0
+            while current:
+                if index == ind:
+                    return current
+                ind += 1
+                current = current.next
+
+    def pop(self, index=None):
+        if index is None:
+            index = self.size - 2
+        if index < 0:
+            index = self.size + index
+        if index == 0:
+            rv = self.head
+            self.head = self.head.next
+        elif index > self.size - 1 or index < 0:
+            raise IndexError("Invalid index given")
+        else:
+            prev = self.get(index - 1)
+            rv = prev.next
+            prev.next = prev.next.next
+        self.size -= 1
+        return rv.data
+
+    def update(self, index, item):
+        self.__setitem__(index, item)
+
+    def values(self):
+        return self.foo_dict.values()
 
     def __getitem__(self, index):
         assert isinstance(index, int)
         return self.foo_dict.get(index)
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index, item):
         assert isinstance(index, int)
-        self.foo_dict.update({index: value})
+        self.foo_dict.update({index: item})
 
     def __delitem__(self, index):
         assert isinstance(index, int)
