@@ -1,72 +1,32 @@
 # FooBar data type class
 class FooBar:
-    def __init__(self, *args):
+    def __init__(self, iterable):
         self.foo_dict = {}
-        for item in args:
-            self.addfoo(item)
+        join_pos = len(self.foo_dict)
+        for item in iterable:
+            self.foo_dict.update({join_pos: item})
+            join_pos += 1
 
-    def __add__(self, other):
+    """ def __add__(self, other):
         assert isinstance(other, FooBar)
         sum_bar = FooBar(self)
         for item in other:
             sum_bar.addfoo(item)
-        return sum_bar
+        return sum_bar """
 
-    def append(self, item):
-        self.addfoo(item)
+    def get(self, pos):
+        assert isinstance(pos, int)
+        return self.__getitem__(pos)
 
-    def addfoo(self, item):
-        join_index = len(self.foo_dict)
-        self.foo_dict.update({join_index: item})
-
-    def addbar(self, other):
-        assert isinstance(other, FooBar)
-        self.__add__(other)
-
-    """ def insert(self, data, index):
-            if isinstance(data, Node):
-                data = data.data
-            if index < 0:
-                index = self.size + index
-            if index == 0:
-                self.add(data)
-                return
-            elif index > self.size or index < 0:
-                raise IndexError("Invalid index given")
-            elif index == self.size:
-                self.get(index - 1).next = Node(data)
-            else:
-                current = self.get(index - 1)
-                old = current.next
-                current.next = Node(data, old)
-            self.size += 1 """
-
-    def get(self, index):
-        assert isinstance(index, int)
-        return self.__getitem__(index)
-
-    def pop(self, index=None):
-        self.__delitem__(index)
-
-    def update(self, index, item):
-        assert isinstance(index, int)
-        self.__setitem__(index, item)
+    def index(self, item):
+        return self.foo_dict.values().index(item)
 
     def values(self):
         return self.foo_dict.values()
 
-    def __getitem__(self, index):
-        assert isinstance(index, int)
-        return self.foo_dict.get(index)
-
-    def __setitem__(self, index, item):
-        assert isinstance(index, int)
-        self.foo_dict.update({index: item})
-
-    # TODO: fix pop not updating keys after its position
-    def __delitem__(self, index):
-        assert isinstance(index, int)
-        self.foo_dict.pop(index)
+    def __getitem__(self, pos):
+        assert isinstance(pos, int)
+        return self.foo_dict.get(pos)
 
     def __iter__(self):
         return self.foo_dict.values()
