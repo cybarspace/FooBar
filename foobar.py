@@ -14,15 +14,8 @@ class FooBar:
             sum_bar.addfoo(item)
         return sum_bar """
 
-    def get(self, pos):
-        assert isinstance(pos, int)
-        return self.__getitem__(pos)
-
     def index(self, item):
         return self.foo_dict.values().index(item)
-
-    def values(self):
-        return self.foo_dict.values()
 
     def __getitem__(self, pos):
         assert isinstance(pos, int)
