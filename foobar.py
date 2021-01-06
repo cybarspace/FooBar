@@ -1,11 +1,9 @@
 # FooBar data type class
 class FooBar:
-    def __init__(self, iterable):
+    def __init__(self, *args):
         self.foo_dict = {}
-        join_pos = len(self.foo_dict)
-        for item in iterable:
-            self.foo_dict.update({join_pos: item})
-            join_pos += 1
+        for item in args:
+            self.foo_dict.update({args.index(item): item})
 
     """ def __add__(self, other):
         assert isinstance(other, FooBar)
