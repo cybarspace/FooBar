@@ -16,16 +16,14 @@ class FooBar:
         return self.foo_dict.values().index(item)
 
     def __getitem__(self, pos):
-        assert isinstance(pos, int)
+        assert isinstance(pos, int), "Parameter 'pos' must be of type 'int'"
         return self.foo_dict.get(pos)
 
     def __iter__(self):
         return self.foo_dict.values()
 
     def __contains__(self, item):
-        if item in set(self.foo_dict.values()):
-            return True
-        return False
+        return item in set(self.foo_dict.values())
 
     def __len__(self):
         return len(self.foo_dict)
@@ -34,13 +32,15 @@ class FooBar:
         return f"FooBar Object Containing: {self.__str__()}"
 
     def __str__(self):
-        return f"[{', '.join(str(item) for item in self.foo_dict)}]"
+        return f"([{', '.join(str(item) for item in self.foo_dict)}])"
 
     def __list__(self):
         return self.foo_dict.values()
 
     def __eq__(self, other):
-        assert isinstance(other, FooBar)
+        assert isinstance(
+            other, FooBar
+        ), f"Cannot compare foobar with {type(other)} object"
         return (
             len(set(self.foo_dict.values()) - set(other.foo_dict.values())) == 0
         )
