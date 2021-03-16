@@ -10,12 +10,16 @@ class FooBar:
         return self.foo_dict.values().index(item)
 
     def iterator(self):
-        for i in self.foo_dict.keys():
+        for i in self.foo_dict:
             yield self.foo_dict[i]
 
     def __getitem__(self, pos):
         assert isinstance(pos, int), "Parameter 'pos' must be of type 'int'"
-        return self.foo_dict.get(pos)
+        try:
+            return self.foo_dict[pos]
+        except KeyError:
+            raise IndexError(f"FooBar index out of range")
+            return None
 
     def __iter__(self):
         return self.foo_dict
@@ -39,4 +43,4 @@ class FooBar:
         assert isinstance(
             other, FooBar
         ), f"Cannot compare foobar with {type(other)} object"
-        return self.foo_dict.values() == other.foo_dict.values()
+        return self.foo_dict == other.foo_dict
