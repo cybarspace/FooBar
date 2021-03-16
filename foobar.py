@@ -18,7 +18,7 @@ class FooBar:
         try:
             return self.foo_dict[pos]
         except KeyError:
-            raise IndexError(f"FooBar index out of range")
+            raise IndexError("FooBar index out of range")
             return None
 
     def __iter__(self):
