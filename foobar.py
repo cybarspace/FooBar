@@ -8,13 +8,6 @@ class FooBar:
     def index(self, item):
         return self.foo_dict.values().index(item)
 
-    """ def __add__(self, other):
-        assert isinstance(other, FooBar)
-        sum_bar = FooBar(self)
-        for item in other:
-            sum_bar.addfoo(item)
-        return sum_bar """
-
     def __getitem__(self, pos):
         assert isinstance(pos, int), "Parameter 'pos' must be of type 'int'"
         return self.foo_dict.get(pos)
