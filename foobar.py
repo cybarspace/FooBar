@@ -11,9 +11,11 @@ class FooBar:
         Constructor
         """
         self.foo_dict = {}
-        for item in args:
-            self.foo_dict.update({args.index(item): item})
-        self.foo_set = set(self.iterator())
+        def temp_iter(self):
+            for item in args:
+                yield {args.index(item): item}
+        self.foo_dict.update(temp_iter())
+        self.foo_values = set(self.iterator())
 
     def index(self, item):
         return self.foo_dict.values().index(item)
@@ -34,7 +36,7 @@ class FooBar:
         return self.foo_dict
 
     def __contains__(self, item):
-        return item in self.foo_set
+        return item in self.foo_values
 
     def __len__(self):
         return len(self.foo_dict)
@@ -52,7 +54,7 @@ class FooBar:
         return f"FooBar Object Containing: {self.__str__()}"
 
     def __set__(self):
-        return self.foo_set
+        return self.foo_values
 
     def __list__(self):
         return self.foo_dict.values()
