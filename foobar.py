@@ -1,6 +1,15 @@
-# FooBar data type class
+"""
+FooBar data type class
+"""
+
 class FooBar:
+    """
+    FooBar data type class
+    """
     def __init__(self, *args):
+        """
+        Constructor
+        """
         self.foo_dict = {}
         for item in args:
             self.foo_dict.update({args.index(item): item})
@@ -30,17 +39,23 @@ class FooBar:
     def __len__(self):
         return len(self.foo_dict)
 
-    def __repr__(self):
-        return f"FooBar Object Containing: {self.__str__()}"
-
-    def __str__(self):
-        return f"([{', '.join(str(item) for item in self.foo_dict)}])"
-
-    def __list__(self):
-        return self.foo_dict.values()
-
     def __eq__(self, other):
         assert isinstance(
             other, FooBar
         ), f"Cannot compare foobar with {type(other)} object"
         return self.foo_dict == other.foo_dict
+
+    def __str__(self):
+        return f"([{', '.join(str(item) for item in self.foo_dict)}])"
+
+    def __repr__(self):
+        return f"FooBar Object Containing: {self.__str__()}"
+
+    def __set__(self):
+        return self.foo_set
+
+    def __list__(self):
+        return self.foo_dict.values()
+
+    def __tuple__(self):
+        return tuple(self.__list__())
