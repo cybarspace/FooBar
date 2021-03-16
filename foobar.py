@@ -13,7 +13,7 @@ class FooBar:
         self.foo_dict = {}
         for item in args:
             self.foo_dict.update({args.index(item): item})
-        self.foo_set = set(lambda: for i in self.foo_dict: yield self.foo_dict[i])
+        self.foo_set = set(self.iterator())
 
     def index(self, item):
         return self.foo_dict.values().index(item)
