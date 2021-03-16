@@ -4,6 +4,7 @@ class FooBar:
         self.foo_dict = {}
         for item in args:
             self.foo_dict.update({args.index(item): item})
+        self.foo_set = set(self.foo_dict.values())
 
     def index(self, item):
         return self.foo_dict.values().index(item)
@@ -20,7 +21,7 @@ class FooBar:
         return self.foo_dict
 
     def __contains__(self, item):
-        return item in self.foo_dict.values()
+        return item in self.foo_set
 
     def __len__(self):
         return len(self.foo_dict)
