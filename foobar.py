@@ -16,7 +16,9 @@ class FooBar:
 
     def __post_init__(self, values):
         try:
-            self.__baz = (lambda *__baz: dict(enumerate(__baz)))(*values)
+            self.__baz = foobar(
+                *values
+            )  # (lambda *__baz: dict(enumerate(__baz)))(*values)
         except AttributeError as a_err:
             raise TypeError("Values must be given in list or tuple") from a_err
 
