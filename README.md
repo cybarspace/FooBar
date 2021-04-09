@@ -19,6 +19,14 @@
 
 ```python
 def foobar(*__baz): return dict(enumerate(__baz))
+
+fb = foobar(
+    "foo",
+    "bar",
+    "baz"
+)
+
+print(fb)  # output: {0: 'foo', 1: 'bar', 2: 'baz'}
 ```
 
 *Now, onto the real story...*
