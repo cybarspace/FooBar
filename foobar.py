@@ -16,9 +16,7 @@ class FooBar:
 
     def __post_init__(self, values):
         try:
-            self.__baz = foobar(
-                *values
-            )  # (lambda *__baz: dict(enumerate(__baz)))(*values)
+            self.__baz = foobar(*values)
         except AttributeError as a_err:
             raise TypeError("Values must be given in list or tuple") from a_err
 
@@ -38,7 +36,7 @@ class FooBar:
 # a simple, elegant and effective functional solution
 def foobar(*__baz):
     """ foobar function for dict creation """
-    return dict(enumerate(__baz))
+    return dict(enumerate(__baz))  # yapf: disable
 
 
 # what I came up with before the above solution:
