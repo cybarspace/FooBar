@@ -15,7 +15,6 @@
 
 <br />
 <hr />
-<br />
 
 ### The Quest for FooBar
 
