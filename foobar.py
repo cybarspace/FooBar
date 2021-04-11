@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# cython: language_level=3
 """
 FooBar data type class
 
@@ -5,6 +7,15 @@ An ordered iterable data type to hold values in
 dictionaries while automatically assigning keys
 """
 from dataclasses import dataclass, InitVar
+
+# for the memes:
+# foobar = lambda *__baz: dict(enumerate(__baz))
+
+
+# yapf: disable
+# a simple, elegant and effective functional solution
+def foobar(*__baz): return dict(enumerate(__baz))
+# yapf: enable
 
 
 # OOP solution for the memes. Use a tuple instead
@@ -33,20 +44,10 @@ class FooBar:
             raise IndexError("FooBar index is nonexistent") from err
 
 
-# a simple, elegant and effective functional solution
-def foobar(*__baz):
-    """ foobar function for dict creation """
-    return dict(enumerate(__baz))  # yapf: disable
-
-
-# what I came up with before the above solution:
+# what I came up with before the above solution using enumerate:
 # def foobar(*args):
 #    """ foobar function for dict creation """
 #    __baz = {}
 #    for val in args:
 #        __baz.update({args.index(val): val})
-#
 #    return __baz
-
-# for the memes:
-# foobar = lambda *__baz: dict(enumerate(__baz))
