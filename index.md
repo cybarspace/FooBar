@@ -13,6 +13,7 @@
 - Uses a `dict` for the `function`
 - The `function` provides a speedup of nearly `50%` but has no type checks or anything to discourage modification of data, since it *just* returns a `dict`. The `Class` is a joke. Use a `tuple` for better performance and “safety”.
 
+<br />
 <hr />
 
 ### The Quest for FooBar
